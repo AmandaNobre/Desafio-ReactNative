@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import Pesquisa from './componentes/Pesquisa'
 import ListDados from './componentes/ListDados'
-import { receberDados, filtrarDados } from './actions/dados'
+import { receberDados, filtrarDados, limparFiltro } from './actions/dados'
 
 class Listagem extends Component {
 
@@ -13,29 +13,27 @@ class Listagem extends Component {
         this.filtrarModuleId = this.filtrarModuleId.bind(this)
         this.filtrarLanguageId = this.filtrarLanguageId.bind(this)
         this.filtrarValue = this.filtrarValue.bind(this)
+        this.limparFiltro = this.limparFiltro.bind(this)
     }
 
     componentDidMount() {
         this.props.receberDados()
-        //this.props.filtrar()
     }
 
     filtrarModuleId(value) {
-        console.log("filtrarResourceId")
-        console.log("value", value.type)
         this.props.filtrarDados(value)
     }
 
     filtrarLanguageId(value) {
-        console.log("filtrarLanguageId")
-        console.log("value", value.value)
         this.props.filtrarDados(value)
     }
 
     filtrarValue(value) {
-        console.log("filtrarValue")
-        console.log("value: ", value.value)
         this.props.filtrarDados(value)
+    }
+    
+    limparFiltro(){
+        this.props.limparFiltro()
     }
 
     render() {
@@ -48,7 +46,8 @@ class Listagem extends Component {
                 <Pesquisa
                     filtrarModuleId={this.filtrarModuleId}
                     filtrarLanguageId={this.filtrarLanguageId}
-                    filtrarValue={this.filtrarValue} />
+                    filtrarValue={this.filtrarValue} 
+                    limparFiltro={this.limparFiltro}/>
                 <ListDados list={dados} />
             </View>
         )
@@ -61,4 +60,4 @@ const mapStateToProps = state => ({
 
 })
 
-export default connect(mapStateToProps, { receberDados, filtrarDados })(Listagem)
+export default connect(mapStateToProps, { receberDados, filtrarDados, limparFiltro })(Listagem)

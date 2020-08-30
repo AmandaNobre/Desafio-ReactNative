@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, TextInput } from 'react-native'
+import { View, TextInput, Button } from 'react-native'
 
 export default class Pesquisa extends Component {
 
@@ -9,13 +9,14 @@ export default class Pesquisa extends Component {
                 <Filter
                     filtrarModuleId={this.props.filtrarModuleId}
                     filtrarLanguageId={this.props.filtrarLanguageId}
-                    filtrarValue={this.props.filtrarValue} />
+                    filtrarValue={this.props.filtrarValue} 
+                    limparFiltro={this.props.limparFiltro}/>
             </React.Fragment>
         )
     }
 }
 
-const Filter = ({ filtrarModuleId, filtrarLanguageId, filtrarValue }) => {
+const Filter = ({ filtrarModuleId, filtrarLanguageId, filtrarValue, limparFiltro }) => {
     return (
         <React.Fragment>
             <TextInput placeholder="Module_id"
@@ -24,6 +25,9 @@ const Filter = ({ filtrarModuleId, filtrarLanguageId, filtrarValue }) => {
                 onChangeText={(value) => filtrarLanguageId({ value, type: 'Language_id' })} />
             <TextInput placeholder="Value"
                 onChangeText={(value) => filtrarValue({ value, type: 'Value' })} />
+            <Button 
+            onPress={() => limparFiltro()}
+            title="Limpar Filtro" />
         </React.Fragment>
     )
 }

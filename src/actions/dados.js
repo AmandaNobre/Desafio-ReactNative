@@ -1,26 +1,10 @@
-const RECEBER_DADOS = 'RECEBER_DADOS'
-const FILTRAR = 'FILTRAR'
+import dados from '/home/amanda/Documentos/projetos/native/SrMilo/src/dados/get_resources_since.json'
 
-const list = [{
-    resource: {
-        created_at: "2016-03-03T20:50:17Z",
-        updated_at: "2020-05-05T12:38:26Z",
-        resource_id: "whatsnew",
-        module_id: "GreenMileTrack",
-        value: "What's New",
-        language_id: "en"
-    }
-},
-{
-    resource: {
-        created_at: "2020-05-05T14:33:14Z",
-        updated_at: "2020-05-05T14:33:14Z",
-        resource_id: "driver.loading.data",
-        module_id: "GreenMileDriver",
-        value: "Cargando datos...",
-        language_id: "es"
-    }
-}]
+
+const RECEBER_DADOS = 'RECEBER_DADOS'
+const LIMPAR_FILTRO = 'LIMPAR_FILTRO'
+
+const list = dados
 
 export const receberDados = () => async dispatch => {
     return dispatch({
@@ -33,5 +17,12 @@ export const filtrarDados = (value) => async dispatch => {
     return dispatch({
         type: value.type,
         payload: value.value
+    })
+}
+
+export const limparFiltro = () => async dispatch => {
+    return dispatch({
+        type: LIMPAR_FILTRO,
+        ṕayload: list
     })
 }
